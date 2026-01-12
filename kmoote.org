@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilian Moote | Kmoote.org</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sky-blue: #87CEEB;
+            --ocean: #4A90A4;
+            --sand: #F4E8D0;
+            --forest: #5F7B6D;
+            --cloud: #FFFFFF;
+            --mist: #E8F4F8;
+            --dusk: #B8D4E0;
+            --charcoal: #2C3E50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(180deg, var(--mist) 0%, var(--cloud) 50%, var(--sand) 100%);
+            color: var(--charcoal);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .hero-banner {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, var(--sky-blue) 0%, var(--ocean) 50%, var(--dusk) 100%);
+            overflow: hidden;
+            margin-bottom: -100px;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,53.3C672,53,768,75,864,80C960,85,1056,75,1152,69.3L1200,64L1200,120L1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z" fill="%23F4E8D0" opacity="0.9"/></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, -20px); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--ocean);
+            box-shadow: 0 10px 30px rgba(74, 144, 164, 0.3);
+            flex-shrink: 0;
+        }
+
+        .profile-content {
+            flex: 1;
+        }
+
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--ocean);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--forest);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .bio {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            animation: fadeIn 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        nav a {
+            padding: 1rem 2rem;
+            text-decoration: none;
+            color: var(--ocean);
+            font-weight: 500;
+            font-size: 1.05rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--ocean);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(74, 144, 164, 0.15);
+        }
+
+        nav a:hover {
+            background: var(--ocean);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 144, 164, 0.3);
+        }
+
+        nav a.active {
+            background: var(--ocean);
+            color: white;
+            box-shadow: 0 6px 20px rgba(74, 144, 164, 0.4);
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+            animation: fadeInScale 0.8s ease-out 0.5s backwards;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+            animation: contentFadeIn 0.5s ease-out;
+        }
+
+        @keyframes contentFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.5rem;
+            color: var(--ocean);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .ventures-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--charcoal);
+            margin-bottom: 2.5rem;
+        }
+
+        .ventures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .venture-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(74, 144, 164, 0.1);
+        }
+
+        .venture-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+        }
+
+        .venture-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--dusk) 0%, var(--ocean) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .venture-content {
+            padding: 1.5rem;
+        }
+
+        .venture-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--ocean);
+            margin-bottom: 0.8rem;
+            font-family: 'Lora', serif;
+        }
+
+        .venture-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .venture-link {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: var(--ocean);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .venture-link:hover {
+            background: var(--forest);
+            transform: translateX(4px);
+        }
+
+        .linkedin-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2rem;
+            background: var(--ocean);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(74, 144, 164, 0.2);
+        }
+
+        .linkedin-link:hover {
+            background: var(--forest);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(74, 144, 164, 0.3);
+        }
+
+        .linkedin-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: var(--forest);
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                height: 300px;
+                margin-bottom: -80px;
+            }
+
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .ventures-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-banner"></div>
+
+    <div class="container">
+        <div class="profile-section">
+            <img src="profile-photo.jpg" alt="Kilian Moote" class="profile-photo">
+            <div class="profile-content">
+                <h1>Kilian Moote</h1>
+                <p class="tagline">Strategist · Builder · Explorer</p>
+                <p class="bio">
+                    I'm a strategic thinker and purpose-driven builder passionate about creating systems and ventures that bridge innovation with social impact.
+                </p>
+            </div>
+        </div>
+
+        <nav>
+            <a href="#home" class="nav-link active" data-page="home">Home</a>
+            <a href="#half-baked" class="nav-link" data-page="half-baked">Half Baked Ideas</a>
+            <a href="#social-ventures" class="nav-link" data-page="social-ventures">Social Ventures</a>
+            <a href="https://www.instagram.com/thealoofnomad/" target="_blank" rel="noopener noreferrer" class="nav-link">Aloof Nomad</a>
+        </nav>
+
+        <div class="content-card">
+            <div class="page-content active" id="home">
+                <h2>Welcome</h2>
+                <div class="bio">
+                    <p>I'm a <strong>strategic thinker and purpose-driven builder</strong> passionate about creating systems and ventures that bridge innovation with social impact. My work sits at the intersection of <strong>technology, entrepreneurship, and community development</strong>.</p>
+                    
+                    <p>Currently, I'm exploring how emerging technologies can be leveraged to solve complex social challenges, particularly in areas like financial inclusion, sustainable development, and education access.</p>
+                    
+                    <p>I bring experience in <strong>strategy consulting, venture building, and social innovation</strong>, always with an eye toward creating lasting, meaningful change. Whether it's through half-baked ideas that need nurturing, social ventures seeking sustainable models, or simply wandering as an aloof nomad gathering inspiration—I'm committed to building a better future.</p>
+                    
+                    <p>This space is where I share my journey, experiments, and the work that keeps me curious.</p>
+                </div>
+                <a href="https://www.linkedin.com/in/kmoote" target="_blank" rel="noopener noreferrer" class="linkedin-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    Connect on LinkedIn
+                </a>
+            </div>
+
+            <div class="page-content" id="half-baked">
+                <h2>Half Baked Ideas</h2>
+                <div style="text-align: center; padding: 3rem 2rem; color: var(--forest);">
+                    <h3 style="font-family: 'Lora', serif; font-size: 2rem; margin-bottom: 1rem; font-style: italic;">Brewing thoughts...</h3>
+                    <p style="font-size: 1.1rem;">This space is warming up. Check back soon for ideas in progress, experiments, and creative explorations that are still finding their shape.</p>
+                </div>
+            </div>
+
+            <div class="page-content" id="social-ventures">
+                <h2>Some of the ventures I've helped build over the years</h2>
+                <div class="ventures-intro">
+                    <p>I'm passionate about building unique solutions to intractable problems. I'm fortunate enough to have been involved in the below enterprises in some way:</p>
+                </div>
+
+                <div class="ventures-grid">
+                    <div class="venture-card">
+                        <div class="venture-image">KTC</div>
+                        <div class="venture-content">
+                            <h3 class="venture-title">KnowTheChain</h3>
+                            <p class="venture-description">A resource for companies and investors to address forced labor risks in global supply chains through comprehensive benchmarking and reporting.</p>
+                            <a href="https://www.knowthechain.org" target="_blank" rel="noopener noreferrer" class="venture-link">Visit Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="venture-card">
+                        <div class="venture-image">FRG</div>
+                        <div class="venture-content">
+                            <h3 class="venture-title">FORGE</h3>
+                            <p class="venture-description">A collaborative of philanthropic donors working to advance a global economy that works for all by supporting community and worker-led movements.</p>
+                            <a href="https://www.forgefunders.org/" target="_blank" rel="noopener noreferrer" class="venture-link">Visit Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="venture-card">
+                        <div class="venture-image">TIP</div>
+                        <div class="venture-content">
+                            <h3 class="venture-title">The Investment Integration Project</h3>
+                            <p class="venture-description">Develops tools for system-level investing to manage systemic risks and invest in solutions to systemic problems like climate change and income inequality.</p>
+                            <a href="https://tiiproject.com/" target="_blank" rel="noopener noreferrer" class="venture-link">Visit Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="venture-card">
+                        <div class="venture-image">DGN</div>
+                        <div class="venture-content">
+                            <h3 class="venture-title">Dignita (Eat Well Do Good)</h3>
+                            <p class="venture-description">A social enterprise café in Amsterdam where 100% of profits support certified training programs combating human trafficking through Not For Sale.</p>
+                            <a href="https://eatwelldogood.nl/en/" target="_blank" rel="noopener noreferrer" class="venture-link">Visit Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="venture-card">
+                        <div class="venture-image">RBL</div>
+                        <div class="venture-content">
+                            <h3 class="venture-title">REBBL</h3>
+                            <p class="venture-description">Organic functional beverages company creating impact through ethical sourcing and supporting Not For Sale's mission to end human trafficking.</p>
+                            <a href="https://rebbl.com/" target="_blank" rel="noopener noreferrer" class="venture-link">Visit Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="venture-card">
+                        <div class="venture-image">NFS</div>
+                        <div class="venture-content">
+                            <h3 class="venture-title">Not For Sale</h3>
+                            <p class="venture-description">Building enterprises to end human trafficking before it begins by working with local experts to tackle root causes through education and opportunity.</p>
+                            <a href="https://wearenotforsale.org/" target="_blank" rel="noopener noreferrer" class="venture-link">Visit Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="venture-card">
+                        <div class="venture-image">IAH</div>
+                        <div class="venture-content">
+                            <h3 class="venture-title">Investor Alliance for Human Rights</h3>
+                            <p class="venture-description">A collective action platform connecting institutional investors with tools to promote human rights and responsible business conduct.</p>
+                            <a href="https://investorsforhumanrights.org/" target="_blank" rel="noopener noreferrer" class="venture-link">Visit Website →</a>
+                        </div>
+                    </div>
+
+                    <div class="venture-card">
+                        <div class="venture-image">WCF</div>
+                        <div class="venture-content">
+                            <h3 class="venture-title">Working Capital Fund</h3>
+                            <p class="venture-description">A venture capital firm investing in technology to promote fairness and build responsible, sustainable global supply chains.</p>
+                            <a href="https://workingcapitalfund.com/" target="_blank" rel="noopener noreferrer" class="venture-link">Visit Website →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Kilian Moote · Kmoote.org</p>
+        </footer>
+    </div>
+
+    <script>
+        const navLinks = document.querySelectorAll('.nav-link:not([target])');
+        const pages = document.querySelectorAll('.page-content');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                navLinks.forEach(l => l.classList.remove('active'));
+                pages.forEach(p => p.classList.remove('active'));
+                link.classList.add('active');
+                const pageId = link.getAttribute('data-page');
+                document.getElementById(pageId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
